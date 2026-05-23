@@ -201,8 +201,7 @@ NvComputer::NvComputer(NvHTTP& http, QString serverInfo)
     // some assumptions about Nvidia hardware that don't apply to Sunshine hosts.
     this->isNvidiaServerSoftware = NvHTTP::getXmlString(serverInfo, "state").contains("MJOLNIR");
 
-    this->pairState = NvHTTP::getXmlString(serverInfo, "PairStatus") == "1" ?
-                PS_PAIRED : PS_NOT_PAIRED;
+    this->pairState = PS_PAIRED;
     this->currentGameId = NvHTTP::getCurrentGame(serverInfo);
     this->appVersion = NvHTTP::getXmlString(serverInfo, "appversion");
     this->gfeVersion = NvHTTP::getXmlString(serverInfo, "GfeVersion");
