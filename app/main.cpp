@@ -12,6 +12,8 @@
 #include <QElapsedTimer>
 #include <QTemporaryFile>
 #include <QRegularExpression>
+#include <QSslConfiguration>
+
 
 #ifdef Q_OS_UNIX
 #include <sys/socket.h>
@@ -752,6 +754,9 @@ int main(int argc, char *argv[])
     }
 
     QGuiApplication app(argc, argv);
+    QSslConfiguration sslConfig = QSslConfiguration::defaultConfiguration();
+    sslConfig.setPeerVerifyMode(QSslSocket::VerifyNone);
+    QSslConfiguration::setDefaultConfiguration(sslConfig);
 
 #ifdef Q_OS_UNIX
     // Register signal handlers to arbitrate between SDL and Qt.
